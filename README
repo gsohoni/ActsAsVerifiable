@@ -1,0 +1,30 @@
+ActsAsVerifiable
+================
+
+This plugin lets you create entities with a verification status. Once an entity is modified,
+the status of the entity is set to 'Unverified'. The plugin lets you check the status of the
+entity and also lets you set it to 'Verified'.
+
+The plugin uses polymorphic association and hence can be used with any model without
+any change required in the model itself.
+
+Plugin needs to have a VerificationStatus model to function properly.
+
+
+Example
+=======
+
+You only need to call 'acts_as_verifiable' in the model class
+
+class SomeClass < ActiveRecord::Base
+  acts_as_verifiable
+end
+
+To check the status of the entity:
+@entity.is_verified?
+
+To set as verified:
+@entity.set_as_verified
+
+
+Copyright (c) 2011 [Gaurav Sohoni], released under the MIT license
