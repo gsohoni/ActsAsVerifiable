@@ -10,7 +10,6 @@ module ActsAsVerifiable
 
   module ClassMethods
     def acts_as_verifiable(options = {})
-      before_update :check_entity_state
       after_save :set_verification
 
       has_one :verification_status, :as => :verifiable
@@ -30,13 +29,6 @@ module ActsAsVerifiable
 
   private
 
-  def check_entity_state    
-    if self.changed?
-      self.verification_status.is_verified = false
-    end
-    return true
-  end
-
   # create / update verification status
   def set_verification
     unless self.verification_status
@@ -44,7 +36,7 @@ module ActsAsVerifiable
       vs.verifiable = self
     else
       vs = self.verification_status
-      vs.is_verified = false
+      vs.is_verified = false if self.changed?
     end
     vs.save!
   end
