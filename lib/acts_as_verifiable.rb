@@ -1,5 +1,9 @@
 module ActsAsVerifiable
 
+  class VerificationStatus < ActiveRecord::Base
+    belongs_to :verifiable, :polymorphic => true
+  end
+
   def self.included(mod)
     mod.extend(ClassMethods)
   end
