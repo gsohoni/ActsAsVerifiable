@@ -1,0 +1,8 @@
+Description:
+    This generator is used to create the polymorphic table for the plugin
+
+Example:
+    ./script/generate acts_as_verifiable_migration
+
+This will create:
+    db/migrate/20XXXXXXXXXXXX_acts_as_verifiable_migration
